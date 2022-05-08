@@ -21,6 +21,15 @@ class AnalyticsConfigTest extends FunctionalTest
 
     // TODO: Add Tests
 
+    /**
+     * default test - description
+     *
+     * @return void
+     */
+    public function testDefault()
+    {
+        $this->assertEquals(2, 1+1);
+    }
     // /**
     //  * Test wether the default purpose is added
     //  * @return void
