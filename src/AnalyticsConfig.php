@@ -10,7 +10,7 @@ use Syntro\SilverstripeKlaro\KlaroRequirements;
  * customizeable way.
  * @author Matthias Leutenegger
  */
-class AnalyticsConfig  extends Config
+class AnalyticsConfig extends Config
 {
     /**
      * includeKlaroRequirements - adds the service and purpose to the klaro config

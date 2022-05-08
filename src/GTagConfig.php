@@ -9,7 +9,7 @@ use Syntro\SilverstripeKlaro\KlaroRequirements;
 
 /**
  * Class for managing the gtag.js requirement
- *
+ * @author Matthias Leutenegger
  */
 class GTagConfig
 {

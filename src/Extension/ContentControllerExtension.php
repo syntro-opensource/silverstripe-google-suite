@@ -27,12 +27,20 @@ class ContentControllerExtension extends Extension
     {
         if (AnalyticsConfig::isEnabled() || AdsConfig::isEnabled()) {
             GTagConfig::includeKlaroGlobalSiteTag();
-            if (AnalyticsConfig::isEnabled()){ AnalyticsConfig::includeKlaroRequirements(); }
-            if (AdsConfig::isEnabled()){ AdsConfig::includeKlaroRequirements(); }
+            if (AnalyticsConfig::isEnabled()) {
+                AnalyticsConfig::includeKlaroRequirements();
+            }
+            if (AdsConfig::isEnabled()) {
+                AdsConfig::includeKlaroRequirements();
+            }
             if (true || Director::isLive() && Versioned::get_stage() == Versioned::LIVE) {
                 GTagConfig::includeGlobalSiteTag();
-                if (AnalyticsConfig::isEnabled()){ AnalyticsConfig::includeFrontendRequirements(); }
-                if (AdsConfig::isEnabled()){ AdsConfig::includeFrontendRequirements(); }
+                if (AnalyticsConfig::isEnabled()) {
+                    AnalyticsConfig::includeFrontendRequirements();
+                }
+                if (AdsConfig::isEnabled()) {
+                    AdsConfig::includeFrontendRequirements();
+                }
             }
         }
     }

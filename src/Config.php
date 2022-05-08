@@ -2,11 +2,12 @@
 
 namespace Syntro\SilverstripeGoogleSuite;
 
-use SilverStripe\Core\Config\Configurable;use SilverStripe\Core\Config\Config as SSConfig;
+use SilverStripe\Core\Config\Configurable;
+use SilverStripe\Core\Config\Config as SSConfig;
 
 /**
  * base class for each google product config. Manages tokens and services
- *
+ * @author Matthias Leutenegger
  */
 abstract class Config
 {
@@ -83,8 +84,7 @@ abstract class Config
             }
             return $token;
         }
-        throw new \Exception("Can not get a default token when no tokens are configured for ". __CLASS__, 1);
-
+        throw new \Exception("Can not get a default token when no tokens are configured for " . __CLASS__, 1);
     }
 
     /**
@@ -128,7 +128,7 @@ abstract class Config
      *
      * @return void
      */
-    public static abstract function includeKlaroRequirements();
+    abstract public static function includeKlaroRequirements();
 
 
     /**
@@ -137,5 +137,5 @@ abstract class Config
      *
      * @return void
      */
-    public static abstract function includeFrontendRequirements();
+    abstract public static function includeFrontendRequirements();
 }

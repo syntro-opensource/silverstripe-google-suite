@@ -26,11 +26,21 @@ class AdsConfig extends Config
     private static $onsubmit_conversion = [];
 
 
+    /**
+     * getOnClickTrack
+     *
+     * @return array
+     */
     public static function getOnClickTrack()
     {
         return SSConfig::inst()->get(static::class, 'onclick_conversion');
     }
 
+    /**
+     * getOnSubmitTrack
+     *
+     * @return array
+     */
     public static function getOnSubmitTrack()
     {
         return SSConfig::inst()->get(static::class, 'onsubmit_conversion');
@@ -105,6 +115,5 @@ class AdsConfig extends Config
             'googleadstracking'
         );
         KlaroRequirements::klaroJavascript('syntro/silverstripe-google-suite:client/dist/aconvt.js', 'googleadstracking');
-
     }
 }
