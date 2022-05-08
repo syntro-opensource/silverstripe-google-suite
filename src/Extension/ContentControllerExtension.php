@@ -33,7 +33,7 @@ class ContentControllerExtension extends Extension
             if (AdsConfig::isEnabled()) {
                 AdsConfig::includeKlaroRequirements();
             }
-            if (true || Director::isLive() && Versioned::get_stage() == Versioned::LIVE) {
+            if (Director::isLive() && Versioned::get_stage() == Versioned::LIVE) {
                 GTagConfig::includeGlobalSiteTag();
                 if (AnalyticsConfig::isEnabled()) {
                     AnalyticsConfig::includeFrontendRequirements();
