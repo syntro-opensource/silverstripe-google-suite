@@ -24,9 +24,62 @@ scripts after the user accepts.
 
 There are two configs which handle injecting the respective dependencies:
 
-* [AnalyticsConfig](src/AnalyticsConfig.php)
-* [AdsConfig](src/AdsConfig.php)
+* [Syntro\SilverstripeGoogleSuite\AnalyticsConfig](src/AnalyticsConfig.php)
+* [Syntro\SilverstripeGoogleSuite\AdsConfig](src/AdsConfig.php)
 
+Each of the mentioned configs is enabled by adding tokens which you get when
+registring for Ads or Analytics. You can add multiple tokens to send
+events to multiple accounts. Additional options for the `gtag('cofig', ...)` tag
+can be specified too:
+
+```yml
+Syntro\SilverstripeGoogleSuite\AnalyticsConfig:
+  google_tokens:
+    - X-XXXXXXXXX
+    - token: X-XXXXXXXXX
+      option: value
+```
+
+After adding at least one tag, the respective product becomes active.
+
+### Google Analytics
+This module is intended to be used with the new properties. After configuring the
+tokens, everything should be working out of the box.
+
+### Google Ads Conversion Tracking
+
+In order to track conversions on your page, you have to configure said conversions
+in your Ads account. A conversion has a label assigned to it which you need in order
+to send it to the correct container.
+
+To inject automated conversions in your page, you have to define them in the config:
+
+```yml
+Syntro\SilverstripeGoogleSuite\AdsConfig:
+  google_tokens:
+    - token: XX-XXXXXXXXXXXX
+  onclick_conversion:
+    - selector: "a[href*=tel]"
+      conversion_label: XxXXxxXXXXxx
+    - selector: a[href^="mailto:info@domain.com"]
+      conversion_label: XxXXxxXXXXxx
+    - selector: a[href*="shop.domain.com"]
+      conversion_label: XxXXxxXXXXxx
+  onsubmit_conversion:
+    - selector: "form[id*=SomeForm]"
+      conversion_label: XxXXxxXXXXxx
+      conversion_id: XX-XXXXXXXXXXXX
+```
+There are currently two kinds of automated conversions:
+
+* `onclick_conversion`: these are triggered when the user clicks on an element.
+* `onsubmit_conversion`: these are triggered when the user submits a form.
+
+Every automated conversion can have the following keys:
+* `selector`: a CSS selector which identifies the DOM-Nodes you want to track
+* `conversion_label`: the label of the conversion
+* `conversion_id`: (optional) the conversion id to use when emitting the event. By default, the first configured token is used, but in the edge-case where you need to add multiple tokens, use this option to define the target.
+* `conversion_url`: (optional) should not be used. This overwrites the normal behaviour by forcing the user to this url.
 
 > ## Styling klaro!
 > This Module uses klaro! for consent management via the [`syntro/silverstripe-klaro`](https://github.com/syntro-opensource/silverstripe-klaro)
