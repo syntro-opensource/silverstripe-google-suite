@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "watch": "webpack --watch --mode development",
+    "build": "webpack --mode production",
+    "release": "git fetch && git-chglog -o CHANGELOG.md $([[ ! -z $npm_config_next ]] && echo \"--next-tag $npm_config_next\" )"
+  },
+  "name": "silverstripe-google-suite",
+  "description": "implementation of Klaro consent manager for Silverstripe",
+  "dependencies": {
+    "@syntro-opensource/eslint-config-base": "^1.0.2",
+    "@syntro-opensource/webpack-config": "^1.2.1"
+  }
+}

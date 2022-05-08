@@ -1,0 +1,6 @@
+de:
+  Syntro\SilverstripeKlaro\Config:
+    purpose_analytics_title: Analytics
+    purpose_analytics_description: Strumenti per la raccolta di statistiche di utilizzo
+    service_googleanalytics_title: Google Analytics
+    service_googleanalytics_description: Software di analisi di Google

@@ -1,0 +1,8 @@
+---
+Name: silverstripe-google-suite
+Before:
+  - 'syntro/silverstripe-klaro'
+---
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - Syntro\SilverstripeGoogleSuite\Extension\ContentControllerExtension
