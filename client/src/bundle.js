@@ -3,23 +3,22 @@
  *
  * @param  {string} label the conversion label
  * @param  {string} id    the id of the ad account
- * @param  {string} url   the url posted to
  * @return {bool}
  */
-function broadcastConversionEvent(label, id, url) {
+function broadcastConversionEvent(label, id) {
   if (typeof (label) !== 'string') {
     console.error('no conversion label given'); // eslint-disable-line no-console
   }
   let convId = id;
   if (!convId) convId = window.ssgsuiteDefaultToken;
-  const callback = function callback() {
-    if (url || typeof (url) !== 'undefined') {
-      window.location = url;
-    }
-  };
+  // const callback = function callback() {
+  //   if (url || typeof (url) !== 'undefined') {
+  //     window.location = url;
+  //   }
+  // };
   gtag('event', 'conversion', { // eslint-disable-line no-undef
     send_to: `${convId}/${label}`,
-    event_callback: callback,
+    // event_callback: callback,
   });
   return false;
 }
@@ -30,12 +29,12 @@ function broadcastConversionEvent(label, id, url) {
  * @param  {Node} element the element in question
  * @return {null|string}
  */
-function hrefFromElement(element) {
-  if (element.tagName && ['a', 'A'].includes(element.tagName) && element.attributes.href) {
-    return element.attributes.href.value;
-  }
-  return null;
-}
+// function hrefFromElement(element) {
+//   if (element.tagName && ['a', 'A'].includes(element.tagName) && element.attributes.href) {
+//     return element.attributes.href.value;
+//   }
+//   return null;
+// }
 
 /**
  * appendClickHandler - appends a conversion event on the given event type
@@ -46,11 +45,11 @@ function hrefFromElement(element) {
 function appendHandler(eventName, conversion) {
   const elements = document.querySelectorAll(conversion.selector);
   for (let i = 0; i < elements.length; i += 1) {
-    const url = conversion.conversion_url || hrefFromElement(elements[i]);
+    // const url = conversion.conversion_url || hrefFromElement(elements[i]);
     elements[i].addEventListener(eventName, () => broadcastConversionEvent(
       conversion.conversion_label,
       conversion.conversion_id,
-      url,
+      // url,
     ));
   }
 }
