@@ -14,6 +14,13 @@ class AdsConfig extends Config
 {
 
     /**
+     * the name of the default purpose
+     * @config
+     * @var string
+     */
+    private static $klaro_default_purpose = 'marketing';
+
+    /**
      * @config
      * @var array
      */
@@ -57,19 +64,20 @@ class AdsConfig extends Config
         $klaro_purposes = SSConfig::inst()->get(static::class, 'klaro_purposes');
         $klaro_enabled_by_default = SSConfig::inst()->get(static::class, 'klaro_enabled_by_default');
         $klaro_opt_out = SSConfig::inst()->get(static::class, 'klaro_opt_out');
+        $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
 
         if ($klaro_create_default_purpose) {
             SSConfig::modify()->merge(KlaroConfig::class, 'klaro_purposes', [
-                'marketing' => ['title' => 'Marketing', 'description' => 'Tools used to manage and display ads']
+                $klaro_default_purpose => ['title' => 'Marketing', 'description' => 'Tools used to manage and display ads']
             ]);
-            $klaro_purposes[] = 'marketing';
+            $klaro_purposes[] = $klaro_default_purpose;
         }
 
 
         SSConfig::modify()->merge(KlaroConfig::class, 'klaro_services', [
             'googleadstracking' => [
                 'title' => 'Google Ads Conversion Tracking',
-                'description' => 'Conversion tracking by Google',
+                'description' => 'Service to keep track of ad efficiency',
                 'default' => $klaro_enabled_by_default,
                 'purposes' => $klaro_purposes,
                 'cookies' => [ "/^_gc(_.*)?/" ],
@@ -96,22 +104,6 @@ class AdsConfig extends Config
                 window.ssgsuiteOnSubmit = $onSubmitTrack;
                 window.ssgsuiteDefaultToken = "$defaultToken";
             JS,
-            //     window.ssgsuiteBroadcast = function (label, url, id = $defaultToken) {
-            //         if (typeof(label) != 'string') {
-            //             console.error('no conversion label given');
-            //         }
-            //         var callback = function () {
-            //             if (typeof(url) != 'undefined') {
-            //                 window.location = url;
-            //             }
-            //         };
-            //         gtag('event', 'conversion', {
-            //             'send_to': id + '/' + label,
-            //             'event_callback': callback
-            //         });
-            //         return false;
-            //     }
-            // JS,
             'googleadstracking'
         );
         KlaroRequirements::klaroJavascript('syntro/silverstripe-google-suite:client/dist/aconvt.js', 'googleadstracking');

@@ -1,6 +1,12 @@
 de:
   Syntro\SilverstripeKlaro\Config:
+    service_gtagjs_title: Google Global Site Tag
+    service_gtagjs_description: Permet le fonctionnement de services tels que Google Analytics et le suivi des conversions.
     purpose_analytics_title: Analytics
-    purpose_analytics_description: Werkzeuge zur Erhebung von Nutzungsstatistiken
+    purpose_analytics_description: Outils de collecte de statistiques d'utilisation
     service_googleanalytics_title: Google Analytics
-    service_googleanalytics_description: Analyse-Software von Google
+    service_googleanalytics_description: Logiciel d'analyse de Google
+    purpose_marketing_title: Marketing
+    purpose_marketing_description: Outils de gestion et d'évaluation de nos activités publicitaires
+    service_googleadstracking_title: Suivi des conversions Google Ads
+    service_googleadstracking_description: Service permettant de mesurer l'efficacité des annonces.

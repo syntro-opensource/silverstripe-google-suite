@@ -16,7 +16,7 @@ class GTagConfig
     use Configurable;
 
     /**
-     * A token to fetch the gtag script. not required, one will be tagken from
+     * A token to fetch the gtag script. not required, one will be taken from
      * Ads or analytics if empty
      * @config
      * @var string
@@ -24,14 +24,14 @@ class GTagConfig
     private static $google_token = null;
 
     /**
-     * if true, a new purpose will be created
+     * the name of the default purpose
      * @config
      */
-    private static $klaro_create_default_purpose = true;
+    private static $klaro_default_purpose = 'functional';
 
     /**
-     * Add the created service to additional purposes. If 'klaro_create_default_purpose'
-     * is true, the default purpose will be appended.
+     * Add the created service to additional purposes. This service will be appended
+     * to all purposes of the other tools.
      * @config
      */
     private static $klaro_purposes = [];
@@ -75,15 +75,18 @@ class GTagConfig
      */
     public static function includeKlaroGlobalSiteTag()
     {
-        $klaro_create_default_purpose = SSConfig::inst()->get(static::class, 'klaro_create_default_purpose');
+        $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
         $klaro_purposes = SSConfig::inst()->get(static::class, 'klaro_purposes');
         $klaro_enabled_by_default = static::isKlaroEnabledByDefault();
 
-        if ($klaro_create_default_purpose) {
-            SSConfig::modify()->merge(KlaroConfig::class, 'klaro_purposes', [
-                'functional' => ['title' => 'Functional', 'description' => 'Tools that are used to make this website and services on it work.']
-            ]);
-            $klaro_purposes[] = 'functional';
+        if ($klaro_default_purpose) {
+            $klaro_purposes[] = $klaro_default_purpose;
+        }
+        if (AnalyticsConfig::isEnabled()) {
+            $klaro_purposes = array_merge($klaro_purposes, AnalyticsConfig::getKlaroPurposes());
+        }
+        if (AdsConfig::isEnabled()) {
+            $klaro_purposes = array_merge($klaro_purposes, AdsConfig::getKlaroPurposes());
         }
 
 

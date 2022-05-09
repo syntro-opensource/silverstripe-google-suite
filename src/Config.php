@@ -34,6 +34,13 @@ abstract class Config
     private static $klaro_create_default_purpose = true;
 
     /**
+     * the name of the default purpose
+     * @config
+     * @var string
+     */
+    private static $klaro_default_purpose = 'functional';
+
+    /**
      * Add the created service to additional purposes. If 'klaro_create_default_purpose'
      * is true, the default purpose will be appended.
      * @config
@@ -57,6 +64,22 @@ abstract class Config
         return
             SSConfig::inst()->get(static::class, 'is_enabled') &&
             count(static::getGoogleTokens()) > 0;
+    }
+
+    /**
+     * getKlaroPurposes
+     *
+     * @return array
+     */
+    public static function getKlaroPurposes()
+    {
+        $klaro_create_default_purpose = SSConfig::inst()->get(static::class, 'klaro_create_default_purpose');
+        $klaro_purposes = SSConfig::inst()->get(static::class, 'klaro_purposes');
+        $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
+        if ($klaro_create_default_purpose) {
+            $klaro_purposes[] = $klaro_default_purpose;
+        }
+        return $klaro_purposes;
     }
 
     /**

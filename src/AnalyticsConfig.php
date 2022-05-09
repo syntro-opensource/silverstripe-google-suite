@@ -12,6 +12,14 @@ use Syntro\SilverstripeKlaro\KlaroRequirements;
  */
 class AnalyticsConfig extends Config
 {
+
+    /**
+     * the name of the default purpose
+     * @config
+     * @var string
+     */
+    private static $klaro_default_purpose = 'analytics';
+
     /**
      * includeKlaroRequirements - adds the service and purpose to the klaro config
      *
@@ -23,12 +31,13 @@ class AnalyticsConfig extends Config
         $klaro_purposes = SSConfig::inst()->get(static::class, 'klaro_purposes');
         $klaro_enabled_by_default = SSConfig::inst()->get(static::class, 'klaro_enabled_by_default');
         $klaro_opt_out = SSConfig::inst()->get(static::class, 'klaro_opt_out');
+        $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
 
         if ($klaro_create_default_purpose) {
             SSConfig::modify()->merge(KlaroConfig::class, 'klaro_purposes', [
-                'analytics' => ['title' => 'Analytics', 'description' => 'Tools used to gather usage statistics']
+                $klaro_default_purpose => ['title' => 'Analytics', 'description' => 'Tools used to gather usage statistics']
             ]);
-            $klaro_purposes[] = 'analytics';
+            $klaro_purposes[] = $klaro_default_purpose;
         }
 
 
