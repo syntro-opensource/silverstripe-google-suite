@@ -82,12 +82,7 @@ class GTagConfig
         if ($klaro_default_purpose) {
             $klaro_purposes[] = $klaro_default_purpose;
         }
-        if (AnalyticsConfig::isEnabled()) {
-            $klaro_purposes = array_merge($klaro_purposes, AnalyticsConfig::getKlaroPurposes());
-        }
-        if (AdsConfig::isEnabled()) {
-            $klaro_purposes = array_merge($klaro_purposes, AdsConfig::getKlaroPurposes());
-        }
+
 
 
         SSConfig::modify()->merge(KlaroConfig::class, 'klaro_services', [
