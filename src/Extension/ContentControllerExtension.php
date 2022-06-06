@@ -57,8 +57,7 @@ class ContentControllerExtension extends Extension
     {
         $owner = $this->getOwner()->data();
         $data = $owner->data();
-        if (
-            $data instanceOf \SilverStripe\CMS\Model\SiteTree &&
+        if ($data instanceof \SilverStripe\CMS\Model\SiteTree &&
             Director::isLive() &&
             Versioned::get_stage() == Versioned::LIVE &&
             // $owner->getAction() === 'index' &&

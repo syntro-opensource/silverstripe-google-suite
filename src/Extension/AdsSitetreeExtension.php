@@ -39,6 +39,7 @@ class AdsSitetreeExtension extends Extension
 
     /**
      * Update Fields
+     * @param  FieldList $fields the fields forom Parent
      * @return FieldList
      */
     public function updateCMSFields(FieldList $fields)
@@ -109,13 +110,13 @@ class AdsSitetreeExtension extends Extension
                 },
             ],
         ]);
-        $helptext = _t(__CLASS__.'.GoogleAdsDescription', 'The conversions entered below are triggered when this page is loaded.');
+        $helptext = _t(__CLASS__ . '.GoogleAdsDescription', 'The conversions entered below are triggered when this page is loaded.');
         $fields->addFieldsToTab(
             'Root.Ads',
             [
                 HeaderField::create(
                     'GoogleAdsHeader',
-                    _t(__CLASS__.'.GoogleAdsHeader', 'Google Ads Pageload Conversions')
+                    _t(__CLASS__ . '.GoogleAdsHeader', 'Google Ads Pageload Conversions')
                 ),
                 LiteralField::create(
                     'GoogleAdsDescription',
