@@ -94,7 +94,7 @@ class AdsSitetreeExtension extends Extension
                     }
                     return DropdownField::create(
                         'GoogleToken',
-                        'Google Token',
+                        _t(Conversion::class . '.GoogleToken', 'Google Ads Account'),
                         $sanitizedTokens
                     );
                 },
@@ -104,12 +104,12 @@ class AdsSitetreeExtension extends Extension
                 'callback' => function () {
                     return TextField::create(
                         'ConversionLabel',
-                        'Conversion Label'
+                        _t(Conversion::class . '.ConversionLabel', 'Conversion Label')
                     );
                 },
             ],
         ]);
-        $helptext = _t(__CLASS__.'.GoogleAdsDescription', 'Add Google Ads Conversions which are triggered when this page is loaded below.');
+        $helptext = _t(__CLASS__.'.GoogleAdsDescription', 'The conversions entered below are triggered when this page is loaded.');
         $fields->addFieldsToTab(
             'Root.Ads',
             [
