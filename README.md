@@ -37,6 +37,7 @@ Syntro\SilverstripeGoogleSuite\AnalyticsConfig:
   google_tokens:
     - X-XXXXXXXXX
     - token: X-XXXXXXXXX
+      title: Some Ads Account # set a title for backend use
       option: value
 ```
 
