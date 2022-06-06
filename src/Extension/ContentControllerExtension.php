@@ -44,4 +44,29 @@ class ContentControllerExtension extends Extension
             }
         }
     }
+
+    /**
+     * afterCallActionHandler - adds the snippets for the pageload conversions
+     *
+     * @param  HTTPRequest             $request the current request
+     * @param  string                  $action  the current action
+     * @param  DBHTMLText|HTTPResponse $result  the current result
+     * @return void
+     */
+    public function beforeCallActionHandler($request, $action, $result)
+    {
+        $owner = $this->getOwner()->data();
+        $data = $owner->data();
+        if (
+            $data instanceOf \SilverStripe\CMS\Model\SiteTree &&
+            Director::isLive() &&
+            Versioned::get_stage() == Versioned::LIVE &&
+            // $owner->getAction() === 'index' &&
+            $data->GoogleConversions()->count() > 0
+        ) {
+            foreach ($data->GoogleConversions() as $conversion) {
+                $conversion->requireSnippet();
+            }
+        }
+    }
 }

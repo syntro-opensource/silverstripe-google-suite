@@ -133,6 +133,7 @@ abstract class Config
             if (is_array($token)) {
                 $tokenString = $token['token'];
                 unset($token['token']);
+                unset($token['title']);
                 if (count($token) > 0) {
                     $options = json_encode($token);
                     $script .= "gtag('config', '$tokenString', $options);";

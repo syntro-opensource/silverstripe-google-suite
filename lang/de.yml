@@ -10,3 +10,11 @@ de:
     purpose_marketing_description: Werkzeuge zur Verwaltung und Auswertung unserer Werbeaktivitäten
     service_googleadstracking_title: Google Ads Conversion Tracking
     service_googleadstracking_description: Dienst zur Messung der Anzeigeneffizienz.
+
+  Syntro\SilverstripeGoogleSuite\Model\Conversion:
+    GoogleToken: Google Ads Account
+    ConversionLabel: Conversion Label
+  Syntro\SilverstripeGoogleSuite\Extension\AdsSitetreeExtension:
+    GoogleAdsHeader: Google Ads Conversions bei Seitenaufruf
+    GoogleAdsDescription: Die unten eingetragenen Conversions werden beim Laden dieser Seite ausgelöst.
+    ADS: Ads

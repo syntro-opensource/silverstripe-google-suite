@@ -6,3 +6,7 @@ Before:
 SilverStripe\CMS\Controllers\ContentController:
   extensions:
     - Syntro\SilverstripeGoogleSuite\Extension\ContentControllerExtension
+
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - Syntro\SilverstripeGoogleSuite\Extension\AdsSitetreeExtension
