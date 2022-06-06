@@ -34,6 +34,7 @@ class Conversion extends DataObject
     /**
      * Defines summary fields commonly used in table columns
      * as a quick overview of the data for this dataobject
+     * @config
      * @var array
      */
     private static $summary_fields = [
@@ -43,6 +44,7 @@ class Conversion extends DataObject
 
     /**
      * Has_one relationship
+     * @config
      * @var array
      */
     private static $has_one = [

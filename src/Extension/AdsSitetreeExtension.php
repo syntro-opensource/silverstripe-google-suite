@@ -31,6 +31,7 @@ class AdsSitetreeExtension extends Extension
 {
     /**
      * Has_many relationship
+     * @config
      * @var array
      */
     private static $has_many = [
