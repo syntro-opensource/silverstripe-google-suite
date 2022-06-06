@@ -76,7 +76,7 @@ class Conversion extends DataObject
         $label = $this->ConversionLabel;
         KlaroRequirements::customKlaroScript(
             <<<JS
-                gtag('event', 'conversion', {'send_to': '$token/$label'});</script>
+                gtag('event', 'conversion', {'send_to': '$token/$label'});
             JS
             ,
             'googleadstracking'
