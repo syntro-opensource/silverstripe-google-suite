@@ -18,7 +18,7 @@ class AdsConfig extends Config
      * @config
      * @var string
      */
-    private static $klaro_default_purpose = 'marketing';
+    private static $klaro_default_purpose = 'analytics';
 
     /**
      * @config
@@ -68,7 +68,7 @@ class AdsConfig extends Config
 
         if ($klaro_create_default_purpose) {
             SSConfig::modify()->merge(KlaroConfig::class, 'klaro_purposes', [
-                $klaro_default_purpose => ['title' => 'Marketing', 'description' => 'Tools used to manage and display ads']
+                $klaro_default_purpose => ['title' => 'Analytics', 'description' => 'Tools used to gather usage statistics']
             ]);
             $klaro_purposes[] = $klaro_default_purpose;
         }
