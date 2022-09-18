@@ -55,6 +55,13 @@ abstract class Config
     private static $klaro_enabled_by_default = false;
 
     /**
+     * if true, the generated service will be required
+     * WARNING: enabling this will most likely violate GDPR rules
+     * @config
+     */
+    private static $klaro_required = false;
+
+    /**
      * isEnabled
      *
      * @return boolean
@@ -111,13 +118,23 @@ abstract class Config
     }
 
     /**
+     * isKlaroRequired - check if this service is a required one
+     *
+     * @return boolean
+     */
+    public static function isKlaroRequired()
+    {
+        return SSConfig::inst()->get(static::class, 'klaro_required');
+    }
+
+    /**
      * isKlaroEnabledByDefault
      *
      * @return boolean
      */
     public static function isKlaroEnabledByDefault()
     {
-        return SSConfig::inst()->get(static::class, 'klaro_enabled_by_default');
+        return SSConfig::inst()->get(static::class, 'klaro_enabled_by_default') || static::isKlaroRequired();
     }
 
     /**
