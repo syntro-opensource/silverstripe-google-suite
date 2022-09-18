@@ -32,6 +32,7 @@ class AnalyticsConfig extends Config
         $klaro_enabled_by_default = SSConfig::inst()->get(static::class, 'klaro_enabled_by_default');
         $klaro_opt_out = SSConfig::inst()->get(static::class, 'klaro_opt_out');
         $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
+        $klaro_required = static::isKlaroRequired();
 
         if ($klaro_create_default_purpose) {
             SSConfig::modify()->merge(KlaroConfig::class, 'klaro_purposes', [
@@ -46,6 +47,7 @@ class AnalyticsConfig extends Config
                 'title' => 'Google Analytics',
                 'description' => 'Analytics software by Google',
                 'default' => $klaro_enabled_by_default,
+                'required' => $klaro_required,
                 'purposes' => $klaro_purposes,
                 'cookies' => [ "/^_ga(_.*)?/" ],
                 'extDependsOn' => ['gtagjs']

@@ -57,6 +57,19 @@ class GTagConfig
     }
 
     /**
+     * isKlaroRequired - Check wether this service is required and cannot
+     * be disabled.
+     *
+     * @return boolean
+     */
+    public static function isKlaroRequired()
+    {
+        $GARequired = AnalyticsConfig::isEnabled() && AnalyticsConfig::isKlaroRequired();
+        $AWRequired = AdsConfig::isEnabled() && AdsConfig::isKlaroRequired();
+        return $GARequired || $AWRequired;
+    }
+
+    /**
      * isKlaroEnabledByDefault
      *
      * @return boolean
@@ -78,7 +91,7 @@ class GTagConfig
         $klaro_default_purpose = SSConfig::inst()->get(static::class, 'klaro_default_purpose');
         $klaro_purposes = SSConfig::inst()->get(static::class, 'klaro_purposes');
         $klaro_enabled_by_default = static::isKlaroEnabledByDefault();
-
+        $klaro_required = static::isKlaroRequired();
         if ($klaro_default_purpose) {
             $klaro_purposes[] = $klaro_default_purpose;
         }
@@ -91,6 +104,7 @@ class GTagConfig
                 'description' => 'Allows Google services like Analytics and conversion tracking to work.',
                 'default' => $klaro_enabled_by_default,
                 'purposes' => $klaro_purposes,
+                'required' => $klaro_required,
                 'cookies' => [],//[ "/^_ga(_.*)?/" ],
             ]
         ]);
