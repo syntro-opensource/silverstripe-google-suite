@@ -9,9 +9,9 @@
         }
     ],
     "require": {
-        "silverstripe/cms": "^4",
-        "silverstripe/framework": "^4",
-        "symbiote/silverstripe-gridfieldextensions": "^3",
+        "silverstripe/cms": "^4 || ^5",
+        "silverstripe/framework": "^4 || ^5",
+        "symbiote/silverstripe-gridfieldextensions": "^3 || ^4",
         "syntro/silverstripe-klaro": "^1.3"
     },
     "require-dev": {
