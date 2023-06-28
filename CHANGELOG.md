@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+<a name="1.1.0"></a>
+## [1.1.0] - 2023-06-28
+### 🍰 Added
+- Changed constraints for SS5 support
+
 <a name="1.0.1"></a>
 ## [1.0.1] - 2022-09-18
 ### 🍰 Added
@@ -25,5 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update phpunit/phpunit requirement from ^5.7 to ^9.5 ([#1](https://github.com/syntro-opensource/silverstripe-google-suite/issues/1))
 
 
-[Unreleased]: https://github.com/syntro-opensource/silverstripe-google-suite/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/syntro-opensource/silverstripe-google-suite/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/syntro-opensource/silverstripe-google-suite/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/syntro-opensource/silverstripe-google-suite/compare/1.0.0...1.0.1
